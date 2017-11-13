@@ -1,11 +1,11 @@
 mydata <- read.table('./household_power_consumption.txt', header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
 subdata <- mydata[mydata$Date %in% c("1/2/2007","2/2/2007") ,]
 
-datetime <- strptime(paste(mydata$Date, mydata$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
-globalActivePower <- as.numeric(mydata$Global_active_power)
-subMetering1 <- as.numeric(mydata$Sub_metering_1)
-subMetering2 <- as.numeric(mydata$Sub_metering_2)
-subMetering3 <- as.numeric(mydata$Sub_metering_3)
+datetime <- as.Date(subdata$Date, "%d/%m/%Y") 
+#globalActivePower <- as.numeric(mydata$Global_active_power)
+subMetering1 <- as.numeric(subdata$Sub_metering_1)
+subMetering2 <- as.numeric(subdata$Sub_metering_2)
+subMetering3 <- as.numeric(subdata$Sub_metering_3)
 
 png("plot3.png", width=480, height=480)
 plot(datetime, subMetering1, type="l", ylab="Energy Submetering", xlab="")
